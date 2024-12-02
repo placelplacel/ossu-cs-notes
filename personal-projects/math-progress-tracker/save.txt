@@ -1,0 +1,6 @@
+date_started:2024-10-22
+date_due:2024-11-02
+page_start:282
+page_end:524
+page_current:322
+date_last_logged:2024-10-27
