@@ -1,4 +1,0 @@
-key1:val1
-:val2
-key3:
-:
