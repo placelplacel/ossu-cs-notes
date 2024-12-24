@@ -31,7 +31,7 @@
 > If you are writing a function that consumes a custom data type that you have defined, using HtDF, and decide to borrow the template from the data definition of the type, then make sure to mention where you got the template from.
 > 
 > ```lisp
-> ; template from PlayerNmae
+> ; template from PlayerName
 >
 > (define (banned? name) ...)
 > ```
@@ -54,7 +54,7 @@ These are used for representing numeric information within a specific range.
 
 ```lisp
 ;; Byte is Integer[0, 255]
-;; interp. a number that can be represented with just 8 bits.
+;; interp. a positive integer that can be represented with just 8 bits.
 
 (define BYTE_1 1)
 (define BYTE_2 244)
@@ -67,7 +67,7 @@ These are used for representing numeric information within a specific range.
 ; - Atomic Non-Distinct: Integer[0, 255]
 ```
 
-> We use mathematical notation for representing ranges: `[]` is inclusive, and `()` is exclusive.
+> We use the mathematical interval notation for representing ranges: `[]` is inclusive, and `()` is exclusive.
 
 ## "Enum"erations
 These are used for representing one of multiple distinct values (you know how enums work).
@@ -119,14 +119,14 @@ These are like enums but at least one of the "classes" is not represented by a s
 ;; Template Rules Used:
 ;; - One of:              2 cases
 ;; - Atomic Distinct:     false
-;; - Atomic Non-Distinct: Number[0, 10]
+;; - Atomic Non-Distinct: Number[1, 10]
 ```
 
 > Notice how we explicitly checked to see if the score was a number before proceeding with the interval checks? Think about why we might have done this.
 > 
 > (**Hint:** Mixed Data Itemization/Multiple Types)
 
-> Keep in mind that we did not have to worry about `false?` breaking like we had to for the interval checks because it accepts arguments with all (primitive) types.
+> Keep in mind that we did not have to worry about `false?` breaking like we had to for the interval checks because it accepts arguments of all (primitive) types.
 
 > We can simplify the template if we assume that the arguments being passed match the signature of the function, i.e., a `Number[1, 10]` parameter will never be anything except those values, an enum parameter will never have any value other than the values that it contains, etc.
 >
@@ -152,4 +152,4 @@ These are like enums but at least one of the "classes" is not represented by a s
 > ;; - Atomic Non-Distinct: Number[0, 10]
 > ```
 >
-> We don't need the number or the interval guards because the argument being passed cannot be anything other than a number if it is not `false` (which we check for in the first `cond` clause).
+> We don't need the number or the interval guards because the argument being passed cannot be anything other than a number between 1 and 10 inclusive if it is not `false` (which we check for in the first `cond` clause).

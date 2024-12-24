@@ -4,7 +4,7 @@
 - Check if the list is sorted
     - If it is, great!
     - If it isn't, keep going buddy.
-- Randomly order the elements the list.
+- Randomly order the elements in the list.
 - Repeat.
 ```
 **Best Case Complexity:** `O(n)` as we only have to go through the list once, and once again to check if it's sorted.
@@ -21,7 +21,7 @@
 ```
 
 ```python
-def merge_sort(L):
+def bubble_sort(L):
     """
     Assumes that L is a list.
     Returns a new sorted copy of L.

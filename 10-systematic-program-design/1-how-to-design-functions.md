@@ -1,4 +1,4 @@
-# HtDP
+# HtDF
 
 1. **Signature:** Shows the types of the parameters that the function takes in, and the type of its return value.
 

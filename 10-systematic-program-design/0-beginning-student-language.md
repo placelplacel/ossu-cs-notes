@@ -10,7 +10,7 @@
 #i1.414...
 ```
 
-> **Notice the weird `#i` at the beginning of the second value?** This is how Racket tells us that the given value is inexact, i.e., it is a close approximation of but not the actual number.
+> **Notice the weird `#i` at the beginning of the second value?** This is how Racket tells us that the given value is inexact, i.e., it is a close approximation but not the actual number.
 
 ```lisp
 ; These are primitive calls. These have two parts: the primitive (or the operator), and the operands.
@@ -19,7 +19,7 @@
 (sqrt 2)
 ```
 
-> You can think of the operator as the function being called, and of the operands as arguments to that function.
+> You can think of the operator as the function being called, and the operands as arguments to that function.
 
 ## Strings
 Defined just how you would define them in any other language: by enclosing characters with double quotes.
@@ -70,7 +70,7 @@ These are defined in the `2htdp/image` module and houses primitives for drawing 
 ```
 
 ## Combining Images
-We can use `beside` to draw images beside each other such that they are all vertically centered.
+We can use `beside` to draw images beside each other from left to right such that they are all vertically centered.
 
 ```lisp
 ; (beside ...)
@@ -92,7 +92,7 @@ Obviously, we can combine these guys to make more complicated layouts.
 ```
 
 ## Manipulating Images
-`rotate` is a primitive that does exactly what its name suggests. It evaluates to copy of an image, rotated by a given amount.
+`rotate` is a primitive that does exactly what its name suggests. It evaluates to a copy of the image that is fed into it, rotated by a given amount.
 
 ```lisp
 ; (rotate <amount> <image>)

@@ -5,10 +5,10 @@ Figuring out what happens to the efficiency or runtime of a program as the size 
 - **Worst Case:** The longest amount of time the algorithm will take.
 > We generally care more about the worst case scenario.
 
-> We do not time the algorithms to compare them as it not only evaluates the algorithm but also its implementation and the machine that it is running on. Not very helpful when we only care about the efficiency of the algorithm.
+> We do not time the algorithms to compare them as it not only evaluates the algorithm but also its implementation and the machine that it is running on. Not very helpful when we only care about the efficiency of the algorithm!
 
 ## Big Oh Notation
-Determining how the complexity of a program grows as the size of the input approaches infinity, in the worst case. (Asymptotic Growth)
+Determining how the complexity of a program grows as the size of the input approaches infinity, in the worst case. (_Asymptotic Growth_)
 
 Listed below are the different classes of complexities, ranked from the lowest to the highest in terms of how complex they are. We strive to get as far up as possible.
 ```python
@@ -30,9 +30,9 @@ Listed below are the different classes of complexities, ranked from the lowest t
 > # For example, the code below has a complexity of
 > #     O(3n^2 + 1) + O(3n) = O(3n^2 + 3n + 1)
 > # which will be simplified to O(n^2).
-> while j in range(n * n):
+> for j in range(n * n):
 >     some_var += j
-> while i in range(n):
+> for i in range(n):
 >     some_var += i
 > ```
 >
@@ -42,10 +42,10 @@ Listed below are the different classes of complexities, ranked from the lowest t
 > O(f(n)) * O(g(n)) = O(f(n) * g(n))
 >
 > # For example, the code below has a complexity of
-> #     O(3n + 1) * O(n) = O(3n^2 + n)
+> #     O(n) * O(3n^2 + 1) = O(3n^3 + n)
 > # which will be simplified to O(n^2).
-> while i in range(n):
->     while j in range(n):
+> for i in range(n):
+>     for j in range(n * n):
 >         some_var = i + j
 > ```
 >
@@ -60,5 +60,5 @@ def some_func(L1):
         copy.append(obj)
     return copy
 
-# You can see how vague the definition of a 'step' can be. This is why we prefer the Big Oh notation over expressing the number of operations in terms of the size of the input: it preserves the analysis of how the complexity of the program grows with the size of the input, while simultaneously simplifying the process of the analysis in question.
+# You can see how vague the definition of a 'step' can be. This is why we prefer the Big Oh notation over the number of operations: it preserves the analysis of how the complexity of the program grows with the size of the input, while simultaneously simplifying the process of the analysis in question.
 ```

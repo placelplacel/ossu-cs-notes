@@ -6,4 +6,6 @@ A repository housing my notes and code as I progress through the [OSSU curriculu
 2. As an exhibit displaying my progress thus far
 
 ## Numbering Convention
-Two digit number with the first digit representing the subject and the second digit representing the course.
+**For top-level/course directories:** Two digit number with the first digit representing the subject and the second digit representing the course.
+
+**For files within the course directories:** The usual serial numbering scheme but zero-indexed! 

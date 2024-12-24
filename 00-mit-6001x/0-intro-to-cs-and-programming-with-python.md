@@ -45,7 +45,7 @@ Programming is about three things:
 We will try to find the square roots in the following demonstations.
 
 ## Exhaustive Enumeration
-Here, we start with an initial guess and then keep making small increments hoping that we get close enough to the answer, exhaustively enumerating through a range of guesses that we specify.
+Here, we start with an initial guess and then keep making small increments hoping that we get close enough to the answer, exhaustively enumerating through a specific range of guesses.
 
 ```python
 x = 25
@@ -67,7 +67,7 @@ else:
     print(guess, "is a close enough square root of", x)
 ```
 
-This has multiple problems: not only does it take thousands of guess to get anywhere near our answer if the step size is too small; if the step size is too big, it will just step over the answer and the difference (delta) will just keep on increasing.
+This has multiple problems: not only does it take thousands of guesses to get anywhere near our answer if the step size is too small; if the step size is too big, it will just step over the answer and we will spend enormous amounts of computing power and time getting farther and farther away from the answer.
 
 ## Bisection Search
 We know that the square root of a positive number greater than or equal to 1, lies between 1 and that number (both inclusive). We also know that a square function follows an order: it increases as x increases. This makes it a suitable candidate for using bisection search!
@@ -92,7 +92,7 @@ while abs((guess ** 2) - x) >= epsilon:
         low = guess
     guess = (low + high) / 2
 
-print(guess, " is close enough to the square root of", x)
+print(guess, "is close enough to the square root of", x)
 print("It took", guess_count, "guesses to get the given answer.")
 ```
 
@@ -127,8 +127,6 @@ Benchmarking this made me orgasm, holyyyy. This is why I love math.
 
 ## Things to REALLY keep in mind
 ```python
-## !python
-
 # This will ALWAYS return a float even if both operands are integers. Integer division is done using the // operator but it STILL returns the integer as a float. (I am wayyy too used to C-like languages)
 5/4
 

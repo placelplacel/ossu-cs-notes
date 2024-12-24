@@ -6,7 +6,7 @@ We will be using the `pylab` library to plot our graphs/data.
 
 - Assumes that both `x_values` and `y_values` are lists of the same length.
 
-- The graph is displayed on a separate window where you can manipulate the graph, if `plot()` is called from a regular python console.
+- The graph is displayed on a separate window where you can manipulate the graph if `plot()` is called from a regular python console.
 
 - Otherwise, if it is called from an iPython console, it'll be embedded in the console but you'll lose the ability to play around with the graphs.
 
@@ -28,7 +28,7 @@ pylab.plot(x_values, y_values, "b-")
 # "k" means black and "--" means a dashed line.
 pylab.plot(x_values, y_values, "k--")
 
-# There are many other options, such as "r" for "o" for circles, "^" for triangles, etc. Refer to the documentation if you wanna know more about the choices that you have.
+# There are many other options, such as "r" for red, "o" for circles, "^" for triangles, etc. Refer to the documentation if you wanna know more about the choices that you have.
 ```
 
 - You can also specify the line width in a similar manner to `label` using the `line_width` parameter (assumed to be a float).
@@ -87,7 +87,7 @@ pylab.title("Graph 2")  # displays the title for "figure2".
 
 > **Dealing with residue from previous plotting operations**
 > 
-> If you continue plotting data with the functions we have discussed so far and frequently reuse old windows, at some point, you will run into a situation where the figures have some residue left over from previous plotting operations that were run on them (whether in form of old labels, old titles, anything) when you want to start with a clean slate.
+> If you continue plotting data with the functions we have discussed so far and frequently reuse old windows: at some point, you will run into a situation where the figures have some residue left over from previous plotting operations that were run on them (whether in form of old labels, old titles, anything) when you want to start with a clean slate.
 >
 > The `clf()` function, short for "clear frame", is used for this purpose. Running this wipes everything on the active figure/window and allows you to start anew.
 

@@ -11,13 +11,13 @@ You are trying to make soup but bugs keep falling into it from the ceiling. How 
 - Clean the kitchen and remove the source of bugs: **Debugging**
 
 ## Defensive Programming
-- **Write specifications for every function:** What do you expect the inputs to be, what will the function return when given the desired inputs, and so on...
+- **Write specifications for every function:** What do you expect the inputs to be? What will the function return when given the desired inputs? and so on...
 - **Modularize the code:** Break it down into pieces which can be used and tested individually.
 - **Enforce the assumptions:** Make sure that the code is getting the input (and returning the output) that meets the assumptions that you made while writing the code with tools like **assertions**.
 
 ## Testing/Validation
-- **Compare the inputs and outputs:** Is the function return what I intended it to return? Is the output correct?
-- **Think of how you can break the function:** What inputs can you give which will probably make the function... malfunction. (*badum thss*) What cases should you check to make sure that the code is working as intended?
+- **Compare the inputs and outputs:** Is the function returning what I intended it to return? Is the output correct?
+- **Think of how you can break the function:** What inputs can you give which will probably make the function... malfunction? (*badum thss*) What cases should you check to make sure that the code is working as intended?
 
 ## Debugging
 - **Follow the trail:** What are the events that led up to the bug?
@@ -59,6 +59,8 @@ You are trying to make soup but bugs keep falling into it from the ceiling. How 
 # You can use 'else' and 'finally' blocks with a 'try' block.
 try:
     # Code to execute
+except:
+    ...
 else:
     # Try block code did not throw any exceptions
 finally:
