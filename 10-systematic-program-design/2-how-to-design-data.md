@@ -56,8 +56,9 @@ These are used for representing numeric information within a specific range.
 ;; Byte is Integer[0, 255]
 ;; interp. a positive integer that can be represented with just 8 bits.
 
-(define BYTE_1 1)
-(define BYTE_2 244)
+(define BYTE_1 0)
+(define BYTE_2 196)
+(define BYTE_3 255)
 
 #;
 (define (fn-for-byte byte)
@@ -68,6 +69,8 @@ These are used for representing numeric information within a specific range.
 ```
 
 > We use the mathematical interval notation for representing ranges: `[]` is inclusive, and `()` is exclusive.
+
+> Notice how there are 3 examples: one for each end point; and one somewhere in the middle.
 
 ## "Enum"erations
 These are used for representing one of multiple distinct values (you know how enums work).
@@ -108,13 +111,15 @@ These are like enums but at least one of the "classes" is not represented by a s
 ;;     false          means not freaky at all
 ;;     Number[1, 10]  means the person is freaky, and represents their freak score
 
-(define FREAK_SCORE_NOBODY false)
+(define FREAK_SCORE_ANDY false)
+(define FREAK_SCORE_1 1)
+(define FREAK_SCORE_2 5)
 (define FREAK_SCORE_AKI 10)
 
 #;
 (define (fn-for-freak-score score)
-    (cond [(false? score) (...)]
-          [(and (number? score) (<= 1 score) (<= score 10)) (...)]))
+    (cond [(false? score) (... score)]
+          [(and (number? score) (<= 1 score) (<= score 10)) (... score)]))
 
 ;; Template Rules Used:
 ;; - One of:              2 cases
@@ -138,13 +143,15 @@ These are like enums but at least one of the "classes" is not represented by a s
 > ;;     false          means not freaky at all
 > ;;     Number[1, 10]  means the person is freaky, and represents their freak score
 > 
-> (define FREAK_SCORE_NOBODY false)
+> (define FREAK_SCORE_ANDY false)
+> (define FREAK_SCORE_1 1)
+> (define FREAK_SCORE_2 5)
 > (define FREAK_SCORE_AKI 10)
 > 
 > #;
 > (define (fn-for-freak-score score)
->     (cond [(false? score) (...)]
->           [else (...)]))
+>     (cond [(false? score) (... score)]
+>           [else (... score)]))
 > 
 > ;; Template Rules Used:
 > ;; - One of:              2 cases
