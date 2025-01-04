@@ -33,7 +33,7 @@
 > ```lisp
 > ; template from PlayerName
 >
-> (define (banned? name) ...)
+> (define (banned? name) (...))
 > ```
 
 ## End Result
@@ -118,7 +118,7 @@ These are like enums but at least one of the "classes" is not represented by a s
 
 #;
 (define (fn-for-freak-score score)
-    (cond [(false? score) (... score)]
+    (cond [(false? score) (...)]
           [(and (number? score) (<= 1 score) (<= score 10)) (... score)]))
 
 ;; Template Rules Used:
@@ -150,7 +150,7 @@ These are like enums but at least one of the "classes" is not represented by a s
 > 
 > #;
 > (define (fn-for-freak-score score)
->     (cond [(false? score) (... score)]
+>     (cond [(false? score) (...)]
 >           [else (... score)]))
 > 
 > ;; Template Rules Used:
@@ -160,3 +160,18 @@ These are like enums but at least one of the "classes" is not represented by a s
 > ```
 >
 > We don't need the number or the interval guards because the argument being passed cannot be anything other than a number between 1 and 10 inclusive if it is not `false` (which we check for in the first `cond` clause).
+
+> Looking at the code from the previous exhibits, you might notice this:
+> ```lisp
+> (define (fn-for-freak-score score)
+>     (cond [(false? score) (...)]
+>           [else (... score)]))
+> ```
+> One of the branches has `(...)` as the true expression while the other has `(... score)`. How did we decide which one we should use? The answer lies in the next few lines that we left out:
+> ```lisp
+> ;; Template Rules Used:
+> ;; - One of:              2 cases
+> ;; - Atomic Distinct:     false
+> ;; - Atomic Non-Distinct: Number[0, 10]
+> ```
+> Did you catch it? We used `(...)` when the data type we were dealing with was **distinct**, and `(... score)` when it was **non-distinct**. This took me days to figure out as well so don't worry if you weren't able to figure it out by yourself.

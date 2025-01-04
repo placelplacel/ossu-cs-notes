@@ -100,7 +100,7 @@ These must have at least as many test cases as there are cases in the itemizatio
 
 #;
 (define (fn-for-freak-score score)
-    (cond [(false? score) (... score)]
+    (cond [(false? score) (...)]
           [(and (number? score) (<= 1 score 10)) (... score)]))
 
 ;; Template Rules Used:
