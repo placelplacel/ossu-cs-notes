@@ -12,6 +12,13 @@ We will introduce this new primitive and how it works by going through the inner
 (define SPRITE (circle 10 "solid" "white"))
 (define SPEED  3)
 
+;; SpritePosition -> SpritePosition
+;; Start program with (main 0)
+(define (main pos)
+  (big-bang pos
+    (on-tick next-sprite-pos)    ; SpritePosition -> SpritePosition
+    (to-draw render-sprite)))    ; SpritePosition -> Image
+
 ;; SpritePosition is Number
 ;; interp. The x-position of a sprite.
 (define POS_1 0)            ; left edge
@@ -33,9 +40,7 @@ We will introduce this new primitive and how it works by going through the inner
 (check-expect (next-sprite-pos 0) SPEED)
 (check-expect (next-sprite-pos 50) (+ 50 SPEED))
 ;    -- TEMPLATE
-#;
-(define (next-sprite-pos pos)
-  (... pos))
+; Template from SpritePosition
 (define (next-sprite-pos pos)
   (+ pos SPEED))
 
@@ -48,26 +53,23 @@ We will introduce this new primitive and how it works by going through the inner
 (check-expect (render-sprite 0) (place-image SPRITE 0 CTR-Y MTS))
 (check-expect (render-sprite 100) (place-image SPRITE 100 CTR-Y MTS))
 ;    -- TEMPLATE
-#;
-(define (render-sprite pos)
-  (... pos))
+; Template from SpritePosition
 (define (render-sprite pos)
   (place-image SPRITE pos CTR-Y MTS))
-
-(big-bang 0
-  (on-tick next-sprite-pos)
-  (on-draw render-sprite))
 ```
 
 ### The `big-bang` primitive
 This provides the UI framework which allows us to make interactive programs with Racket.
 ```lisp
-(big-bang 0
-  (on-tick next-sprite-pos)
-  (on-draw render-sprite))
+;; SpritePosition -> SpritePosition
+;; Start program with (main 0)
+(define (main pos)
+  (big-bang pos
+    (on-tick next-sprite-pos)    ; SpritePosition -> SpritePosition
+    (to-draw render-sprite)))    ; SpritePosition -> Image
 ```
 You will notice that there are 3 arguments that it is taking in:
-- `0`: This is the initial value that will represent the state of the world (the position of `SPRITE` in this case).
+- `pos`: This is the initial value that will represent the state of the world (the position of `SPRITE` in this case).
 
 - `(on-tick next-sprite-pos)`: This tells it that `next-sprite-pos` is the function that it should call with the current world state as the argument to get the next world state.
 > In this case, it is just adding the value of `SPEED` to it and returning the sum.
@@ -81,9 +83,7 @@ You will notice that there are 3 arguments that it is taking in:
 > (check-expect (next-sprite-pos 0) SPEED)
 > (check-expect (next-sprite-pos 50) (+ 50 SPEED))
 > ;;   -- TEMPLATE
-> #;
-> (define (next-sprite-pos pos)
->   (... pos))
+> ; Template from SpritePosition
 > (define (next-sprite-pos pos)
 >   (+ pos SPEED))
 > ```
@@ -100,9 +100,7 @@ You will notice that there are 3 arguments that it is taking in:
 > (check-expect (render-sprite 0) (place-image SPRITE 0 CTR-Y MTS))
 > (check-expect (render-sprite 100) (place-image SPRITE 100 CTR-Y MTS))
 > ;;   -- TEMPLATE
-> #;
-> (define (render-sprite pos)
->   (... pos))
+> ; Template from SpritePosition
 > (define (render-sprite pos)
 >   (place-image SPRITE pos CTR-Y MTS))
 > ```

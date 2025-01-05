@@ -54,6 +54,8 @@ You are trying to make soup but bugs keep falling into it from the ceiling. How 
 
 **Path-Complete Glassbox Testing:** Testing **every.** **single.** **path.** that the code can take.
 
+> **Glassbox Testing** is sometimes also referred to as **Whitebox Testing**.
+
 # Things I didn't know
 ```python
 # You can use 'else' and 'finally' blocks with a 'try' block.

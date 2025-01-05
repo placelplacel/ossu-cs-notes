@@ -55,11 +55,14 @@ Now let's see how we went about building the program in `3-introduction-to-inter
 
 3. **Defining the `main` function:** This is the function that will serve as the entry point for our program.
 ```lisp
+;; SpritePosition -> SpritePosition
+;; Start the program with ...
 (define (main pos)
-  (big-bang pos                  ; SpritePosition
+  (big-bang pos
     (on-tick next-sprite-pos)    ; SpritePosition -> SpritePosition
     (to-draw render-sprite)))    ; SpritePosition -> Image
 ```
+> We will be replacing the `...` in the purpose with the preferred function call to start the program (e.g. `(main 0)`) when we figure out a good initial value for the world state.
 
 4. **Defining the wishlist functions:** These are functions that we want in our program but haven't implemented *yet*. For these, we write the signature, the purpose (followed by `!!!`), and the stub, but **not** the tests, template, and implementation.
 ```lisp
@@ -88,9 +91,7 @@ Now let's see how we went about building the program in `3-introduction-to-inter
 (check-expect (next-sprite-pos 0) 1)
 (check-expect (next-sprite-pos 50) 51)
 ;    -- TEMPLATE
-#;
-(define (next-sprite-pos pos)
-  (... pos))
+; Template from SpritePosition
 (define (next-sprite-pos pos)
   (+ pos 1))
 
@@ -103,18 +104,17 @@ Now let's see how we went about building the program in `3-introduction-to-inter
 (check-expect (render-sprite 0) (place-image SPRITE 0 CTR-Y MTS))
 (check-expect (render-sprite 100) (place-image SPRITE 100 CTR-Y MTS))
 ;    -- TEMPLATE
-#;
-(define (render-sprite pos)
-  (... pos))
+; Template from SpritePosition
 (define (render-sprite pos)
   (place-image SPRITE pos CTR-Y MTS))
 ```
 
-6. **Recording the preferred initial world state:** `0` seems like a good initial world state for this program so we write it down as a comment above the `main` function.
+6. **Recording the preferred initial world state:** `0` seems like a good initial world state for this program so we will now fill in the blank that we left in the purpose for the `main` function.
 ```lisp
+;; SpritePosition -> SpritePosition
 ;; Start the program with (main 0)
 (define (main pos)
-  (big-bang pos                  ; SpritePosition
+  (big-bang pos
     (on-tick next-sprite-pos)    ; SpritePosition -> SpritePosition
     (to-draw render-sprite)))    ; SpritePosition -> Image
 ```
@@ -155,9 +155,58 @@ Suppose we decide like the sprite was moving a bit too slow and want to be able 
 (check-expect (next-sprite-pos 0) SPEED)
 (check-expect (next-sprite-pos 50) (+ 50 SPEED))
 ;    -- TEMPLATE
-#;
-(define (next-sprite-pos pos)
-  (... pos))
+; Template from SpritePosition
 (define (next-sprite-pos pos)
   (+ pos SPEED))
 ```
+
+## Bonus: Extending the Program even more!
+Here, we will take our example program and add even more functionality to it.
+>*Make it so that the sprite returns to the left edge of the screen whenever the spacebar is pressed.*
+
+Let's see how we would go about doing this.
+
+1. **Updating the analysis:** Before we make any changes to the program, we update the analysis to include the things that we want to add. For our purposes, we are not introducing any new constants or changing information, only a new `big-bang` option `on-key` so we add it to our list.
+
+2. **Introducing the new elements:** Our main function now looks like this.
+```lisp
+;; SpritePosition -> SpritePosition
+;; Start the program with ...
+(define (main pos)
+  (big-bang pos
+    (on-tick next-sprite-pos)    ; SpritePosition -> SpritePosition
+    (to-draw render-sprite)      ; SpritePosition -> Image
+    (on-key  handle-key)))       ; SpritePosition, KeyEvent -> SpritePosition
+```
+
+3. **Writing the wishlist entries:** We introduced the `handle-key` handler so we add it to our wishlist.
+```lisp
+;; SpritePosition, KeyEvent -> SpritePosition
+;; Makes the sprite return to the left edge of the screen when the spacebar is pressed.
+;; !!!
+(define (handle-key pos ke) 0)
+```
+
+4. **Implementing the wishlist functions:** Quite self-explanatory.
+```lisp
+;; SpritePosition, KeyEvent -> SpritePosition
+;; Makes the sprite return to the left edge of the screen when the spacebar is pressed.
+;    -- STUB
+; (define (handle-key pos ke) 0)
+;    -- EXAMPLES
+(check-expect (handle-key 10 " ")  0)
+(check-expect (handle-key 10 "a") 10)
+(check-expect (handle-key 0  " ")  0)
+(check-expect (handle-key 0  "a")  0)
+;    -- TEMPLATE
+#;
+(define (handle-key pos ke)
+  (cond [(string=? ke " ") (... pos)]
+        [else (... pos ke)]))
+(define (handle-key pos ke)
+  (cond [(string=? ke " ") 0]
+        [else pos]))
+```
+> You might notice something here. `KeyEvent` is an enumeration representing every key that could be pressed on the keyboard and there are definitely more than 2 keys that we could press. Then why did we only write tests for 2 keys?
+>
+> The answer to this is "because `KeyEvent` is a **large enumeration**". Writing a test for every key would be extremely tedious, and most of them would have us testing the same branch of code so here, we use **Whitebox Testing** to make our lives easier while still doing what we were trying to do.
