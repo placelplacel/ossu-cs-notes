@@ -9,7 +9,7 @@
 2. **Interpretation:** Tells us how to interpret the data to get the information that it represents.
 
 ```lisp
-;; interp. the name of a player
+;; interp. The name of a player
 ```
 
 3. **Examples:** Some examples to help us understand the way it works by seeing it in action.
@@ -24,6 +24,8 @@
 ```lisp
 (define (fn-for-player-name name)
     (... name))
+;; Template Rules Used:
+;; - Atomic Non-Distinct: String
 ```
 
 > There are multiple kinds of templates based on the kind of data being used to represent the information! The template above is just one of many, and is called the `Atomic Non-Distinct` template rule.
@@ -31,7 +33,7 @@
 > If you are writing a function that consumes a custom data type that you have defined, using HtDF, and decide to borrow the template from the data definition of the type, then make sure to mention where you got the template from.
 > 
 > ```lisp
-> ; template from PlayerName
+> ; Template from PlayerName
 >
 > (define (banned? name) (...))
 > ```
@@ -39,14 +41,16 @@
 ## End Result
 ```lisp
 ;; PlayerName is String
-;; interp. the name of a player
-
+;; interp. The name of a player
+;    -- EXAMPLES
 (define PLAYER_1 "jaybles")
 (define PLAYER_2 "ambey")
-
+;    -- TEMPLATE
 #;
 (define (fn-for-player-name name)
     (... name))
+;; Template Rules Used:
+;; - Atomic Non-Distinct: String
 ```
 
 ## Intervals
@@ -54,18 +58,17 @@ These are used for representing numeric information within a specific range.
 
 ```lisp
 ;; Byte is Integer[0, 255]
-;; interp. a positive integer that can be represented with just 8 bits.
-
+;; interp. A positive integer that can be represented with just 8 bits.
+;    -- EXAMPLES
 (define BYTE_1 0)
 (define BYTE_2 196)
 (define BYTE_3 255)
-
+;    -- TEMPLATE
 #;
 (define (fn-for-byte byte)
     (... byte))
-
-; Template Rules Used:
-; - Atomic Non-Distinct: Integer[0, 255]
+;; Template Rules Used:
+;; - Atomic Non-Distinct: Integer[0, 255]
 ```
 
 > We use the mathematical interval notation for representing ranges: `[]` is inclusive, and `()` is exclusive.
@@ -80,15 +83,14 @@ These are used for representing one of multiple distinct values (you know how en
 ;; - 0
 ;; - 1
 ;; - 2
-;; interp. the name of a close friend of mine
+;; interp. The name of a close friend of mine
 ;;         0 means sis, 1 means ume, 2 means aki
-
+;    -- TEMPLATE
 #;
 (define (fn-for-cwose-fwiend cf)
     (cond [(= cf 0) (...)]
           [(= cf 1) (...)]
           [(= cf 2) (...)]))
-
 ;; Template Rules Used:
 ;; - One of:          3 cases
 ;; - Atomic Distinct: 0
@@ -110,17 +112,16 @@ These are like enums but at least one of the "classes" is not represented by a s
 ;; interp.
 ;;     false          means not freaky at all
 ;;     Number[1, 10]  means the person is freaky, and represents their freak score
-
+;    -- EXAMPLES
 (define FREAK_SCORE_ANDY false)
 (define FREAK_SCORE_1 1)
 (define FREAK_SCORE_2 5)
 (define FREAK_SCORE_AKI 10)
-
+;    -- TEMPLATE
 #;
 (define (fn-for-freak-score score)
     (cond [(false? score) (...)]
           [(and (number? score) (<= 1 score) (<= score 10)) (... score)]))
-
 ;; Template Rules Used:
 ;; - One of:              2 cases
 ;; - Atomic Distinct:     false
@@ -142,17 +143,16 @@ These are like enums but at least one of the "classes" is not represented by a s
 > ;; interp.
 > ;;     false          means not freaky at all
 > ;;     Number[1, 10]  means the person is freaky, and represents their freak score
-> 
+> ;    -- EXAMPLES
 > (define FREAK_SCORE_ANDY false)
 > (define FREAK_SCORE_1 1)
 > (define FREAK_SCORE_2 5)
 > (define FREAK_SCORE_AKI 10)
-> 
+> ;    -- TEMPLATE
 > #;
 > (define (fn-for-freak-score score)
 >     (cond [(false? score) (...)]
 >           [else (... score)]))
-> 
 > ;; Template Rules Used:
 > ;; - One of:              2 cases
 > ;; - Atomic Distinct:     false

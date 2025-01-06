@@ -52,8 +52,8 @@
 5. **Template:** This step seems rather redundant, but for the sake of staying with the course: this is like a stub but with a `(... <some-parameter>)` as the body (implying that we will do something with the said parameter).
 
 ```lisp
-; (define (double n)
-;     (... n))
+(define (double n)
+    (... n))
 ```
 
 6. **Function Body:** After all of the steps above, we finally implement the function based on all of the information/requirements we have gathered up to this point. We use/modify the template for this.
@@ -69,15 +69,16 @@
 ```lisp
 ;; Number -> Number
 ;; Produces double the number that is fed into it.
-; (define (double n) 0)    ; stub
-
+;    -- STUB
+; (define (double n) 0)
+;    -- EXAMPLES
 (check-expect (double 0)      0)
 (check-expect (double 2)      4)
 (check-expect (double 4.3)  8.6)
-
-; (define (double n)       ; template
-;    (... n))
-
+;    -- TEMPLATE
+#;
+(define (double n)
+   (... n))
 (define (double n)
     (* n 2))
 ```

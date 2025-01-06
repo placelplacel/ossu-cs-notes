@@ -8,4 +8,4 @@ A repository housing my notes and code as I progress through the [OSSU CS curric
 ## Numbering Convention
 **For top-level/course directories:** Two digit number with the first digit representing the subject and the second digit representing the course.
 
-**For files within the course directories:** The usual serial numbering scheme but zero-indexed! 
+**For files within the course directories:** Two digit number with the first digit representing the topic and the second digit representing the order/serial number.

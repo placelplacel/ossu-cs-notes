@@ -9,30 +9,28 @@ These must have at least three test cases:
 ```lisp
 ;; PlayerAge is Natural[13, 19]
 ;; interp. a number representing the age of a player
-
+;    -- EXAMPLES
 (define PLAYER_AGE_1 13)
 (define PLAYER_AGE_2 15)
 (define PLAYER_AGE_3 19)
-
+;    -- TEMPLATE
 #;
 (define (fn-for-player-age age)
     (... age))
-
 ;; Template Rules Used:
 ;; - Atomic Non-Distinct: Natural[13, 19]
 
 
 ;; PlayerAge -> boolean
 ;; Produces true if the given age is an edge age (13 or 19) and false otherwise
-
-; (define (edge-age? age) false)    ; stub
-
+;    -- STUB
+; (define (edge-age? age) false)
+;    -- EXAMPLE
 (check-expect (edge-age? 13) true)
 (check-expect (edge-age? 16) false)
 (check-expect (edge-age? 19) true)
-
-; template from PlayerAge
-
+;    -- TEMPLATE
+; Template from PlayerAge
 (define (edge-age age)
     (or (= age 13)
         (= age 19)))
@@ -48,13 +46,12 @@ These must have at least as many test cases as there are cases in the enumeratio
 ;; - 2
 ;; interp. the name of a cwose fwiend of mine
 ;;          0 means sis, 1 means ume, 2 means aki
-
+;    -- TEMPLATE
 #;
 (define (fn-for-cwose-fwiend cf)
     (cond [(= cf 0) (...)]
           [(= cf 1) (...)]
           [(= cf 2) (...)]))
-
 ;; Template Rules Used:
 ;; - One of:          3 cases
 ;; - Atomic Distinct: 0
@@ -64,15 +61,14 @@ These must have at least as many test cases as there are cases in the enumeratio
 
 ;; CwoseFwiend -> String
 ;; Produces the name of the friend that the CwoseFriend fed into it corresponds to
-
-; (define (name cf) "")    ; stub
-
+;    -- STUB
+; (define (name cf) "")
+;    -- EXAMPLES
 (check-expect (name 0) "sis")
 (check-expect (name 1) "ume")
 (check-expect (name 2) "aki")
-
+;    -- TEMPLATE
 ; Template from CwoseFwiend
-
 (define (name cf)
     (cond [(= cf 0) "sis"]
           [(= cf 1) "ume"]
@@ -92,17 +88,16 @@ These must have at least as many test cases as there are cases in the itemizatio
 ;; interp.
 ;;     false          means not freaky at all
 ;;     Number[1, 10]  means the person is freaky, and represents their freak score
-
+;    -- EXAMPLES
 (define FREAK_SCORE_ANDY false)
 (define FREAK_SCORE_1 1)
 (define FREAK_SCORE_2 5)
 (define FREAK_SCORE_AKI 10)
-
+;    -- TEMPLATE
 #;
 (define (fn-for-freak-score score)
     (cond [(false? score) (...)]
           [(and (number? score) (<= 1 score 10)) (... score)]))
-
 ;; Template Rules Used:
 ;; - One of:              2 cases
 ;; - Atomic Distinct:     false
@@ -111,16 +106,15 @@ These must have at least as many test cases as there are cases in the itemizatio
 
 ;; FreakScore -> Image
 ;; Produces an image representing the freak score that is fed into it
-
-; (define (freak-score->image score) (square 0 "solid" "white"))    ; stub
-
+;    -- STUB
+; (define (freak-score->image score) (square 0 "solid" "white"))
+;    -- EXAMPLES
 (check-expect (freak-score->image false)
     (square 0 "solid" "white"))
 (check-expect (freak-score->image 5)
     (text (number->string 5) 30 "red"))
-
+;    -- TEMPLATE
 ; Template from FreakScore
-
 (define (freak-score->image score)
     (cond [(false? score)
             (square 0 "solid" "white")]
@@ -132,21 +126,18 @@ These must have at least as many test cases as there are cases in the itemizatio
 >
 > However, we would have checked for boundary cases if we had been dealing with **adjoining** intervals.
 > ```lisp
-> ...
->
 > ;; FreakScore -> Boolean
 > ;; Returns true if the FreakScore fed into it is more than 5.
->
-> ; (define (freaky-enough? score) false)    ; stub
->
+> ;    -- STUB
+> ; (define (freaky-enough? score) false)
+> ;    -- EXAMPLES
 > (check-expect (freaky-enough? false) false)
 > (check-expect (freaky-enough? 3) false)
 > (check-expect (freaky-enough? 5) false)
 > (check-expect (freaky-enough? 6) true)
 > (check-expect (freaky-enough? 8) true)
->
+> ;    -- TEMPLATE 
 > ; Template from FreakScore
->
 > (define (freaky-enough? score)
 >     (cond [(false? score)
 >             false]
