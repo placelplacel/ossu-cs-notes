@@ -17,7 +17,7 @@ Now let's see how we went about building the program in `3-introduction-to-inter
     4. The y-coordinate of the sprite.
     5. The background.
 
-3. **Identifying changing information:** Once again, from the exmaple states, we can figure out that the x-coordinate of the sprite is the value that will be changing.
+3. **Identifying changing information:** Once again, from the example states, we can figure out that the x-coordinate of the sprite is the value that will be changing.
 
 4. **Deciding which `big-bang` options to use:** We have a value that will be changing over time, and we will be displaying something to the screen so we will be passing in the `on-tick` and `to-draw` arguments.
 
@@ -30,13 +30,15 @@ Now let's see how we went about building the program in `3-introduction-to-inter
 (define MTS    (empty-scene WIDTH HEIGHT "black"))
 (define SPRITE (circle 10 "solid" "white"))
 ```
-> Notice how we used `(/ HEIGHT 2)` when defining `CTR-Y` instead of just writing `75`. This is to ensure that there is **only one point of control**. We wouldn't want to look through the code for instances that depend on the height of the screen and manually update them, would we?
+> Notice that despite there being many more constants that we could've defined for our program, e.g. `CTR-X`, we only defined those that we will be using.
+
+> Also notice how we used `(/ HEIGHT 2)` when defining `CTR-Y` instead of just writing `75`. This is to ensure that there is **only one point of control**. We wouldn't want to look through the code for instances that depend on the height of the screen and manually update them, would we?
 >
 > > *There are two kinds of programs: (i) programs that change; and (ii) programs that nobody uses.*
 > 
 > **Programs with users always change, and that is why it is important to make them easy to change.**
 
-> Also notice how we can easily tell where each observation from our analysis ended up in the program? This is called **Traceability**.
+> And *also* notice (a lot of stuff to notice, I know.) how we can easily tell where each observation from our analysis ended up in the program. This is called **Traceability**.
 
 2. **Defining the world state/the changing values:** In this case, it is the x-coordinate of the sprite.
 ```lisp
@@ -162,7 +164,7 @@ Suppose we decide like the sprite was moving a bit too slow and want to be able 
 
 ## Bonus: Extending the Program even more!
 Here, we will take our example program and add even more functionality to it.
->*Make it so that the sprite returns to the left edge of the screen whenever the spacebar is pressed.*
+>*Make it so that the sprite returns to the left edge of the screen whenever the space bar is pressed.*
 
 Let's see how we would go about doing this.
 
@@ -182,7 +184,7 @@ Let's see how we would go about doing this.
 3. **Writing the wishlist entries:** We introduced the `handle-key` handler so we add it to our wishlist.
 ```lisp
 ;; SpritePosition, KeyEvent -> SpritePosition
-;; Makes the sprite return to the left edge of the screen when the spacebar is pressed.
+;; Makes the sprite return to the left edge of the screen when the space bar is pressed.
 ;; !!!
 (define (handle-key pos ke) 0)
 ```
@@ -190,7 +192,7 @@ Let's see how we would go about doing this.
 4. **Implementing the wishlist functions:** Quite self-explanatory.
 ```lisp
 ;; SpritePosition, KeyEvent -> SpritePosition
-;; Makes the sprite return to the left edge of the screen when the spacebar is pressed.
+;; Makes the sprite return to the left edge of the screen when the space bar is pressed.
 ;    -- STUB
 ; (define (handle-key pos ke) 0)
 ;    -- EXAMPLES
