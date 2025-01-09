@@ -140,7 +140,7 @@ We will be working through designing an example program to understand this.
 
 
 ;; Cow -> Image
-;; Produces LCOW if the velocity of the cow is 0 or negative, RCOW otherwise.
+;; Produces the appropriate cow image based on the direction of the velocity.
 ;; !!!
 ;    -- STUB
 (define (choose-image cow) LCOW)
@@ -173,18 +173,19 @@ We will be working through designing an example program to understand this.
 6. **Implementing the new wishlist function:** We repeat this cycle of defining new wishlist functions that we need and implementing them as many times as we need to.
 ```lisp
 ;; Cow -> Image
-;; Produces an image with the appropriate cow image placed at the appropriate position on MTS.
+;; Produces the appropriate cow image based on the direction of the velocity.
 ;    -- STUB
-; (define (render-cow cow) MTS)
+; (define (choose-image cow) LCOW)
 ;    -- EXAMPLES
-(check-expect (render-cow (make-cow 5   9  false)) (place-image RDCOW 5  CTR-Y MTS))
-(check-expect (render-cow (make-cow 15  12 true))  (place-image RUCOW 15 CTR-Y MTS))
-(check-expect (render-cow (make-cow 11 -5  true))  (place-image LUCOW 11 CTR-Y MTS))
-(check-expect (render-cow (make-cow 21 -2  false)) (place-image LDCOW 21 CTR-Y MTS))
+(check-expect (choose-image (make-cow 33  5)) RCOW)
+(check-expect (choose-image (make-cow 10  0)) LCOW)
+(check-expect (choose-image (make-cow 12 -4)) LCOW)
 ;    -- TEMPLATE
 ; Template from Cow
-(define (render-cow cow)
-  (place-image (choose-image cow) (cow-x cow) CTR-Y MTS))
+(define (choose-image cow)
+  (if (<= (cow-dx cow) 0)
+      LCOW
+      RCOW))
 ```
 
 7. **Recording the preferred initial world state:** We want the starting x-position of the cow to be `0` and the speed to be left up to the user to decide.
