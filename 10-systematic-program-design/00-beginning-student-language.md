@@ -70,7 +70,14 @@ These are defined in the `2htdp/image` module and houses primitives for drawing 
 ```
 
 ## Combining Images
-We can use `beside` to draw images beside each other from left to right such that they are all vertically centered.
+We use `overlay` to draw images layered on each other, from top to bottom.
+```lisp
+; (overlay ...)
+(overlay (square 30 "solid" "lightblue")
+         (text 24 "A" "black"))
+```
+
+`beside` is used for drawing images beside each other from left to right such that they are all vertically centered.
 
 ```lisp
 ; (beside ...)
